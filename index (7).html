@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story - For Nilofar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@400;700&family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        .interface {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        /* Interface 1: Universe Theme */
+        #interface1 {
+            padding: 20px;
+            position: relative; 
+            background-color: #000000; 
+            background-image:
+                radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 160px 120px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 25% 20%, white, rgba(0,0,0,0)),
+                radial-gradient(2.5px 2.5px at 55% 35%, white, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 70% 80%, white, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 85% 50%, white, rgba(0,0,0,0)),
+                radial-gradient(2.5px 2.5px at 15% 70%, white, rgba(0,0,0,0)),
+                linear-gradient(to bottom, #020107 0%, #0a0d3d 50%, #1c133a 100%);
+            background-repeat: repeat;
+            background-size:
+                200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px, 200px 200px,
+                auto, auto, auto, auto, auto,
+                100% 100%;
+            z-index: 100; 
+        }
+
+        #moon {
+            width: 100px;
+            height: 100px;
+            background-color: #f8c3d0;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #f8c3d0, 0 0 40px #f8c3d0, 0 0 60px #f8c3d0, 0 0 80px #f5a9b8;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            z-index: 10;
+        }
+        #moon:active {
+            transform: scale(0.95);
+        }
+
+        #interface1-title {
+            margin-top: 30px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3em;
+            color: #f0e6ef;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5), 0 0 10px #f8c3d0;
+            z-index: 10;
+            margin-bottom: 10px;
+        }
+        #interface1-date {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5em;
+            color: #e0d8df;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+            margin-top: 5px;
+            z-index: 10;
+        }
+
+        /* Interface 2: Letter Animation & Typewriter */
+        #interface2 {
+            padding: 20px;
+            display: none;
+            z-index: 90; 
+            background-color: #06082b; 
+        }
+
+        #letter-animation-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            z-index: 1; 
+            opacity: 1; 
+            transition: opacity 0.7s ease-out, filter 0.7s ease-out; 
+            overflow: hidden; 
+        }
+        .love-letter {
+            font-size: 5rem; 
+            position: absolute;
+            opacity: 0; 
+        }
+        #letter1 { /* Komal's letter - from left */
+            animation: moveLetter1 2s ease-in-out forwards;
+        }
+        #letter2 { /* Shivam's letter - from right */
+            animation: moveLetter2 2s ease-in-out forwards;
+        }
+
+        @keyframes moveLetter1 {
+            0% { transform: translateX(-60vw) rotate(-30deg); opacity: 0; }
+            30% { opacity: 1; }
+            100% { transform: translateX(-40px) translateY(-20px) rotate(-10deg); opacity: 1; } 
+        }
+        @keyframes moveLetter2 {
+            0% { transform: translateX(60vw) rotate(30deg); opacity: 0; }
+            30% { opacity: 1; }
+            100% { transform: translateX(40px) translateY(20px) rotate(10deg); opacity: 1; } 
+        }
+
+        .animated-name {
+            position: absolute;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8em;
+            color: #f8c3d0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7), 0 0 8px #f8c3d0;
+            opacity: 0;
+            white-space: nowrap; 
+        }
+
+        #name-komal {
+            animation: moveNameKomal 2s ease-in-out forwards;
+            animation-delay: 0.2s; 
+        }
+        #name-shivam {
+            animation: moveNameShivam 2s ease-in-out forwards;
+            animation-delay: 0.2s; 
+        }
+
+        @keyframes moveNameKomal { /* Komal, associated with letter1 */
+            0% { transform: translateX(-70vw) translateY(-50px) rotate(-15deg); opacity: 0; }
+            40% { opacity: 1; }
+            /* Final pos: X similar to letter1, Y above letter1's -20px */
+            100% { transform: translateX(-50px) translateY(-80px) rotate(-5deg); opacity: 1; } 
+        }
+        @keyframes moveNameShivam { /* Shivam, associated with letter2 */
+            0% { transform: translateX(70vw) translateY(50px) rotate(15deg); opacity: 0; }
+            40% { opacity: 1; }
+            /* Final pos: X similar to letter2, Y above letter2's +20px (so less positive or negative) */
+            100% { transform: translateX(50px) translateY(-30px) rotate(5deg); opacity: 1; } 
+        }
+        
+        #typewriter-layer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 0.5s; 
+            position: relative; 
+            z-index: 5; 
+        }
+
+        #typewriter-container {
+            background-color: rgba(0, 0, 0, 0.8); 
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 85%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        #typewriter-text {
+            font-family: 'Satisfy', cursive;
+            font-size: 1.6em;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            color: #f5f5f5;
+            text-align: left;
+        }
+        #typewriter-text .cursor {
+            display: inline-block;
+            animation: blink 1s step-end infinite;
+            font-family: 'Roboto', sans-serif;
+            margin-left: 3px;
+            color: #f5f5f5;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Interface 3: Final Photo and Message */
+        #interface3 {
+            display: none;
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000; 
+        }
+
+        #interface3-content {
+            width: 100%;
+            height: 100%;
+            position: relative; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden; 
+        }
+
+        #final-photo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw; 
+            height: 100vh; 
+            object-fit: cover; 
+            z-index: 1; 
+            transition: filter 0.7s ease-in-out, opacity 0.7s ease-in-out;
+            opacity: 1;
+        }
+        #final-photo.blurred {
+            filter: blur(8px);
+        }
+
+        .overlay-text {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            font-family: 'Roboto', sans-serif;
+            color: #ffc2d1; 
+            text-shadow: 1px 1px 4px #000, 0 0 8px rgba(0,0,0,0.7); 
+            position: absolute; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%; 
+            text-align: center;
+            z-index: 10; 
+            box-sizing: border-box; 
+            padding: 0 10px; 
+        }
+        .overlay-text.visible {
+            opacity: 1;
+        }
+
+        #anniversary-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em; 
+            color: #f8c3d0; 
+            text-shadow: 1px 1px 6px #000, 0 0 12px #f8c3d0;
+            top: 50%; 
+            transform: translate(-50%, -50%); 
+        }
+
+        #credits-komal { font-size: 1.4em; bottom: 130px; }
+        #credits-maryam { font-size: 1.2em; bottom: 95px; }
+        #credits-date { font-size: 1.2em; bottom: 60px; }
+        #names-text { 
+            font-size: 1.3em; 
+            bottom: 25px; 
+            color: #f0e6ef; 
+            font-weight: bold;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #interface1, #interface2 { padding: 20px;}
+
+            #interface1-title { font-size: 2.5em; }
+            #interface1-date { font-size: 1.3em; }
+            .love-letter { font-size: 4rem; } 
+            .animated-name { font-size: 2.2em; }
+
+            @keyframes moveNameKomal { 
+                0% { transform: translateX(-70vw) translateY(-40px) rotate(-15deg); opacity: 0; } /* Keep initial transform same or adjust if needed */
+                40% { opacity: 1; }
+                100% { transform: translateX(-45px) translateY(-70px) rotate(-5deg); opacity: 1; } /* Adjusted for smaller screens */
+            }
+            @keyframes moveNameShivam { 
+                0% { transform: translateX(70vw) translateY(40px) rotate(15deg); opacity: 0; } /* Keep initial transform same or adjust if needed */
+                40% { opacity: 1; }
+                100% { transform: translateX(45px) translateY(-40px) rotate(5deg); opacity: 1; } /* Adjusted for smaller screens */
+            }
+
+            #typewriter-container { max-width: 90%; padding: 20px; }
+            #typewriter-text { font-size: 1.3em; line-height: 1.6; }
+            
+            #anniversary-text { font-size: 2em; }
+            #credits-komal { font-size: 1.2em; bottom: 100px; }
+            #credits-maryam { font-size: 1em; bottom: 70px; }
+            #credits-date { font-size: 1em; bottom: 45px; }
+            #names-text { font-size: 1.1em; bottom: 15px; }
+        }
+         @media (max-width: 480px) {
+            #interface1, #interface2 { padding: 15px;}
+
+            #interface1-title { font-size: 2.2em; }
+            #interface1-date { font-size: 1.2em; }
+            #moon { width: 80px; height: 80px; }
+            .love-letter { font-size: 3.5rem; } 
+            .animated-name { font-size: 1.8em; }
+            
+             @keyframes moveNameKomal { 
+                0% { transform: translateX(-70vw) translateY(-35px) rotate(-15deg); opacity: 0; }
+                40% { opacity: 1; }
+                100% { transform: translateX(-40px) translateY(-65px) rotate(-5deg); opacity: 1; } /* Adjusted for smallest screens */
+            }
+            @keyframes moveNameShivam { 
+                0% { transform: translateX(70vw) translateY(35px) rotate(15deg); opacity: 0; }
+                40% { opacity: 1; }
+                100% { transform: translateX(40px) translateY(-45px) rotate(5deg); opacity: 1; } /* Adjusted for smallest screens */
+            }
+
+            #typewriter-container { max-width: 95%; padding: 15px; }
+            #typewriter-text { font-size: 1.1em; line-height: 1.5; }
+
+            #anniversary-text { font-size: 1.7em; }
+            #credits-komal { font-size: 1.1em; bottom: 90px; }
+            #credits-maryam { font-size: 0.9em; bottom: 65px; }
+            #credits-date { font-size: 0.9em; bottom: 40px; }
+            #names-text { font-size: 1em; bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="interface1" class="interface">
+        <div id="moon"></div>
+        <p id="interface1-title">every beat started with you</p>
+        <p id="interface1-date">26-05-2014</p>
+    </div>
+
+    <div id="interface2" class="interface">
+        <div id="letter-animation-layer">
+            <div class="love-letter" id="letter1">💌</div>
+            <div class="love-letter" id="letter2">💌</div>
+            <div class="animated-name" id="name-komal">Komal</div>
+            <div class="animated-name" id="name-shivam">Shivam</div>
+        </div>
+        <div id="typewriter-layer">
+            <div id="typewriter-container">
+                <p id="typewriter-text">
+                    <span id="typed-content"></span><span class="cursor">|</span>
+                </p> <!-- Corrected closing tag -->
+            </div>
+        </div>
+    </div>
+
+    <div id="interface3" class="interface">
+        <div id="interface3-content">
+            <img id="final-photo" src="https://raw.githubusercontent.com/maryam-FOLDS/Shivam/main/IMG-20250525-WA0048.jpg" alt="Our Special Moment">
+            <p id="anniversary-text" class="overlay-text"></p>
+            <p id="credits-komal" class="overlay-text"></p>
+            <p id="credits-maryam" class="overlay-text"></p>
+            <p id="credits-date" class="overlay-text"></p>
+            <p id="names-text" class="overlay-text"></p> 
+        </div>
+    </div>
+
+    <audio id="songPlayer" src="https://github.com/maryam-FOLDS/Shivam/raw/main/Main%20Duniya%20Bhula%20Doonga%20-%20Aashiqui%20320%20Kbps.mp3" preload="auto"></audio>
+
+    <script>
+        const interface1 = document.getElementById('interface1');
+        const interface2 = document.getElementById('interface2');
+        const interface3 = document.getElementById('interface3');
+        
+        const moon = document.getElementById('moon');
+        const songPlayer = document.getElementById('songPlayer');
+        
+        const letterAnimationLayer = document.getElementById('letter-animation-layer');
+        const typewriterLayer = document.getElementById('typewriter-layer');
+        const typedContentSpan = document.getElementById('typed-content');
+        const cursorSpan = document.querySelector('#typewriter-text .cursor');
+
+        const finalPhoto = document.getElementById('final-photo');
+        const anniversaryText = document.getElementById('anniversary-text');
+        const creditsKomal = document.getElementById('credits-komal');
+        const creditsMaryam = document.getElementById('credits-maryam');
+        const creditsDate = document.getElementById('credits-date');
+        const namesText = document.getElementById('names-text'); 
+
+        const TYPEWRITER_SPEED = 75; 
+        const POST_TYPEWRITER_DELAY = 2500;
+        const LETTER_ANIMATION_DURATION = 2000; 
+
+        const fullTextInterface2 = `26 May 2014… 💌 tumne mujhe propose kiya… I love you likha tha… 🌙💭 aur poori raat sochti rahi… phir subah 🌅 Yes, I love you too likh diya… aur shuru hui humari love story 💖✨
+
+Aaj 11 years ho gaye… 🥹💫 Har din tumse aur zyada pyaar hota gaya… Tum meri zindagi ka sabse beautiful part ho… 💑💍
+
+I love you jaan… forever and always… 💞💫 Happy 11th anniversary of our love story! 🥰❤️`;
+
+        let lastTapTime = 0;
+        moon.addEventListener('click', () => {
+            const currentTime = new Date().getTime();
+            const timeSinceLastTap = currentTime - lastTapTime;
+
+            if (timeSinceLastTap < 350 && timeSinceLastTap > 0) { 
+                interface1.style.display = 'none';
+                interface2.style.display = 'flex';
+                
+                letterAnimationLayer.style.filter = 'none';
+                letterAnimationLayer.style.opacity = '1'; 
+                letterAnimationLayer.style.display = 'flex'; 
+                typewriterLayer.style.opacity = '0'; 
+
+                songPlayer.play().catch(error => {
+                    console.error("Audio play failed:", error);
+                });
+                
+                startLetterCollisionAnimation();
+                lastTapTime = 0; 
+            } else {
+                lastTapTime = currentTime;
+            }
+        });
+
+        function startLetterCollisionAnimation() {
+            setTimeout(() => {
+                letterAnimationLayer.style.filter = 'blur(6px)'; 
+                letterAnimationLayer.style.opacity = '0.4';   
+                
+                typewriterLayer.style.opacity = '1'; 
+                startTypewriter();
+            }, LETTER_ANIMATION_DURATION); 
+        }
+
+        function startTypewriter() {
+            let i = 0;
+            typedContentSpan.innerHTML = "";
+            if (cursorSpan) cursorSpan.style.display = 'inline-block';
+
+            function type() {
+                if (i < fullTextInterface2.length) {
+                    typedContentSpan.innerHTML += fullTextInterface2.charAt(i);
+                    i++;
+                    setTimeout(type, TYPEWRITER_SPEED);
+                } else {
+                    if (cursorSpan) cursorSpan.style.display = 'none';
+                    setTimeout(() => {
+                        interface2.style.display = 'none';
+                        interface3.style.display = 'flex';
+                        runInterface3Sequence();
+                    }, POST_TYPEWRITER_DELAY);
+                }
+            }
+            type();
+        }
+
+        function runInterface3Sequence() {
+            finalPhoto.style.opacity = '1'; 
+            finalPhoto.classList.remove('blurred');
+            
+            anniversaryText.classList.remove('visible');
+            creditsKomal.classList.remove('visible');
+            creditsMaryam.classList.remove('visible');
+            creditsDate.classList.remove('visible');
+            namesText.classList.remove('visible'); 
+            
+            anniversaryText.innerHTML = "";
+            creditsKomal.textContent = "";
+            creditsMaryam.textContent = "";
+            creditsDate.textContent = "";
+            namesText.textContent = ""; 
+
+            setTimeout(() => {
+                finalPhoto.classList.add('blurred');
+                anniversaryText.innerHTML = "from 26 may 2014 to ♾️ ❤️";
+                anniversaryText.classList.add('visible');
+            }, 3000);
+
+            setTimeout(() => {
+                creditsKomal.textContent = "Sent to you by KOMAL";
+                creditsKomal.classList.add('visible');
+            }, 8000);
+
+            setTimeout(() => {
+                creditsMaryam.textContent = "Made by MARYAM";
+                creditsMaryam.classList.add('visible');
+            }, 9500);
+            
+            setTimeout(() => {
+                creditsDate.textContent = "Date 26-05-2025";
+                creditsDate.classList.add('visible');
+            }, 11000);
+
+            setTimeout(() => {
+                namesText.textContent = "Shivam💗Komal";
+                namesText.classList.add('visible');
+            }, 12500); 
+        }
+
+        document.body.addEventListener('click', () => {
+            if (songPlayer.paused && songPlayer.src && interface1.style.display === 'none') {
+                // songPlayer.play().catch(e => console.log("Audio play on body click also failed", e));
+            }
+        }, { once: true });
+
+    </script>
+
+</body>
+</html>
